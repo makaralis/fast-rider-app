@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import IconsPanel from "./components/IconsPanel";
-import { AppTitle, MainContainer , RidesContainer} from "./styles/homePage";
+import { AppTitle, RidesContainer} from "./styles/homePage";
 import axios from "axios";
 import CardRide from "./components/RideCard";
 
@@ -28,11 +28,11 @@ const Home = () => {
   console.log(rides);
 
   return (
-    <MainContainer>
+    <div>
       <AppTitle> The Jungle™ FastRider Service </AppTitle>
       <IconsPanel/>
-      <RidesContainer>{rides?.map((ride) => <CardRide rideDetails={ride}/>)}</RidesContainer>
-    </MainContainer>
+      <RidesContainer>{rides?.map((ride) => <CardRide rideDetails={ride} key={ride.id}/>)}</RidesContainer>
+    </div>
   );
 }
 

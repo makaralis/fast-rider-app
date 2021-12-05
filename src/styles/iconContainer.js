@@ -9,5 +9,4 @@ export const Container = styled.div`
     align-items: center;
     max-width: 180px;
     text-align: center;
-    margin: 0 30px;
 `;
