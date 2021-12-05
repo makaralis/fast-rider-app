@@ -1,5 +1,4 @@
-import { Container, Description } from "./styles/iconContainer";
-
+import { Container, Description } from '../styles/iconContainer';
 
 const IconContainer = ({iconPath, description}) => {
   return (

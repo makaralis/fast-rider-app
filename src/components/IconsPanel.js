@@ -1,10 +1,11 @@
 import IconContainer from "./IconContainer";
-import { Container } from "./styles/iconsPanel";
+import { Container } from "../styles/iconsPanel";
 
 
 const IconsPanel = () => {
-  const items = [{iconPath: '', description: ''}, {iconPath: '', description: ''},{iconPath: '', description: ''}];
-
+  const items = [{iconPath: '', description: ''}, 
+  {iconPath: '', description: ''},
+  {iconPath: '', description: ''}];
 
   return (
     <Container>
