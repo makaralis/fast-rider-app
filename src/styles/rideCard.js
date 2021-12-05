@@ -7,7 +7,7 @@ export const StyledCard = styled.div`
     padding: 10px;
     margin: 10px;
     cursor: pointer;
-    background: #373737;
+    background: ${props => props.backgroundcolor};
     color: #656565;
     display: flex;
     flex-direction: column;
