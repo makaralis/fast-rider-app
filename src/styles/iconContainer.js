@@ -7,4 +7,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 180px;
+    text-align: center;
+    margin: 0 30px;
 `;
