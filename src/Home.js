@@ -3,6 +3,7 @@ import IconsPanel from "./components/IconsPanel";
 import { AppTitle, RidesContainer} from "./styles/homePage";
 import axios from "axios";
 import CardRide from "./components/RideCard";
+import { StyledDiv } from "./styles/globalStyles";
 
 
 const Home = () => {
@@ -25,13 +26,13 @@ const Home = () => {
     fetchRides();
   }, [fetchRides]);
 
-  console.log(rides);
-
   return (
     <div>
       <AppTitle> The Jungle™ FastRider Service </AppTitle>
-      <IconsPanel/>
-      <RidesContainer>{rides?.map((ride) => <CardRide rideDetails={ride} key={ride.id}/>)}</RidesContainer>
+      <div><IconsPanel/></div>
+      <StyledDiv display='flex' justifycontent='center'>
+        <RidesContainer>{rides?.map((ride) => <CardRide rideDetails={ride} key={ride.id}/>)}</RidesContainer>
+      </StyledDiv>
     </div>
   );
 }

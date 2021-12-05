@@ -9,4 +9,5 @@ export const Container = styled.div`
     align-items: center;
     max-width: 180px;
     text-align: center;
+    padding: ${props => props.haspadding ? '0 100px' : ''}
 `;
