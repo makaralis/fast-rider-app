@@ -9,12 +9,13 @@ import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { selectedRideAtom } from "./recoil/selected-ride/atoms";
 import { enteredPinAtom } from "./recoil/entered-pin/atoms";
+import IconContainer from "./components/IconContainer";
 
 
 const Home = () => {
   const [rides, setRides] = useState();
   const [loading, setLoading] = useState(true);
-  const [successfulBooking, setSuccessfulBooking] = useState(false);
+  const [successfulBooking, setSuccessfulBooking] = useState(true);
   const [accessCode, setAccessCode] = useState('');
   const [selectedRideState, setSelectedRideState] = useRecoilState(selectedRideAtom);
   const [enteredPin, setEnteredPin] = useRecoilState(enteredPinAtom);
@@ -66,18 +67,23 @@ const Home = () => {
   return (
     <div>
       <AppTitle> The Jungle™ FastRider Service </AppTitle>
-      <div><IconsPanel/></div>
-      <StyledDiv display='flex' justifycontent='center'>
-        {successfulBooking ? <BookedCard accessCode={accessCode}/> : 
-        loading ? <StyledDiv color="#fff" fontsize="20px" textalign='center' padding='20px 0 0 0'>Loading the rides...</StyledDiv> :
-        <StyledDiv display='flex' justifycontent='center' flexdirection='column' alignitems='center'>
-          <InputContainer>
-            <StyledInput type="text" placeholder="#PIN" value={enteredPin} onChange={(e) => {setEnteredPin(e.target.value)}}/>
-            <StyledButton onClick={handleSubmit} disabled={enteredPin === '' || !selectedRideState}><StyledDiv fontsize='18px'>SUBMIT</StyledDiv></StyledButton>
-          </InputContainer>
-          <RidesContainer>{rides?.map((ride) => <RideCard rideDetails={ride} key={ride.id}/>)}</RidesContainer>
-        </StyledDiv>}
-      </StyledDiv>
+      {successfulBooking ? <StyledDiv display='flex' flexdirection='column' alignitems='center'>
+          <IconContainer iconPath="./done.png" description='Thank you for using The Jungle™ FastRider ticket system - your access code is now ready!'/>
+          <BookedCard accessCode={accessCode}/>
+          </StyledDiv> : 
+      <>
+        <div><IconsPanel/></div>
+        <StyledDiv display='flex' justifycontent='center'>
+          {loading ? <StyledDiv color="#fff" fontsize="20px" textalign='center' padding='20px 0 0 0'>Loading the rides...</StyledDiv> :
+          <StyledDiv display='flex' justifycontent='center' flexdirection='column' alignitems='center'>
+            <InputContainer>
+              <StyledInput type="text" placeholder="#PIN" value={enteredPin} onChange={(e) => {setEnteredPin(e.target.value)}}/>
+              <StyledButton onClick={handleSubmit} disabled={enteredPin === '' || !selectedRideState}><StyledDiv fontsize='18px'>SUBMIT</StyledDiv></StyledButton>
+            </InputContainer>
+            <RidesContainer>{rides?.map((ride) => <RideCard rideDetails={ride} key={ride.id}/>)}</RidesContainer>
+          </StyledDiv>}
+        </StyledDiv>
+      </>}
     </div>
   );
 }
