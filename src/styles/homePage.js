@@ -34,13 +34,14 @@ export const StyledButton = styled.button`
     min-width: 180px;
     height: 50px;
     font-weight: bold;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 `
 
 export const StyledInput = styled.input`
     padding: 0 0 0 10px;
     border: none;
     height: 50px;
+    width: 100%;
     color: black;
     font-weight: bold;
     :focus {

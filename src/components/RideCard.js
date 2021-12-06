@@ -1,12 +1,13 @@
 import { StyledCard } from "../styles/rideCard";
 import { StyledDiv } from "../styles/globalStyles";
 import moment from "moment";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { selectedRideAtom } from "../recoil/selected-ride/atoms";
 
 const RideCard = ({rideDetails}) => {
-    const [clicked, setClicked] = useState(false);
+    const [selectedRideState, setSelectedRideState] = useRecoilState(selectedRideAtom);
 
-    return <StyledCard bordercolor={rideDetails.zone.color} onClick={() => { setClicked(!clicked) }} backgroundcolor={clicked ? rideDetails.zone.color : '#373737'}>
+    return <StyledCard bordercolor={rideDetails.zone.color} onClick={() => { setSelectedRideState(rideDetails) }} backgroundcolor={rideDetails.id === selectedRideState.id ? rideDetails.zone.color : '#373737'}>
         <StyledDiv alignself='end'  fontsize='14px'>{rideDetails.zone.name}</StyledDiv>
         <StyledDiv color='#fff'  padding='15px 0' fontsize='20px'>{rideDetails.name}</StyledDiv>
         <StyledDiv display='flex' flexdirection='row' justifycontent='space-between' fontsize='14px'>

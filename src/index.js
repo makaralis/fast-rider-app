@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './Home';
 import reportWebVitals from './reportWebVitals';
+import { RecoilRoot } from 'recoil';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <RecoilRoot>
+      <Home />
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );
