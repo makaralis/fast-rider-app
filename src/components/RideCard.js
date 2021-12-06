@@ -3,7 +3,7 @@ import { StyledDiv } from "../styles/globalStyles";
 import moment from "moment";
 import { useState } from "react";
 
-const CardRide = ({rideDetails}) => {
+const RideCard = ({rideDetails}) => {
     const [clicked, setClicked] = useState(false);
 
     return <StyledCard bordercolor={rideDetails.zone.color} onClick={() => { setClicked(!clicked) }} backgroundcolor={clicked ? rideDetails.zone.color : '#373737'}>
@@ -23,4 +23,4 @@ const CardRide = ({rideDetails}) => {
 }
 
 
-export default CardRide;
+export default RideCard;

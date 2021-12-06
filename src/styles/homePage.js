@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 
 export const AppTitle = styled.h2`
+    padding-top: 40px;
     color: #fff;
 `;
 
