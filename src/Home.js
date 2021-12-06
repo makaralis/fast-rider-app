@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import IconsPanel from "./components/IconsPanel";
-import { AppTitle, RidesContainer} from "./styles/homePage";
+import { AppTitle, RidesContainer, InputContainer, StyledInput, StyledButton} from "./styles/homePage";
 import axios from "axios";
 import RideCard from "./components/RideCard";
 import { StyledDiv } from "./styles/globalStyles";
@@ -37,7 +37,13 @@ const Home = () => {
       <div><IconsPanel/></div>
       <StyledDiv display='flex' justifycontent='center'>
         {loading ? <StyledDiv color="#fff" fontsize="20px" textalign='center' padding='20px 0 0 0'>Loading the rides...</StyledDiv> :
-        <RidesContainer>{rides?.map((ride) => <RideCard rideDetails={ride} key={ride.id}/>)}</RidesContainer>}
+        <StyledDiv display='flex' justifycontent='center' flexdirection='column' alignitems='center'>
+          <InputContainer>
+            <StyledInput type="text" placeholder="#PIN" style={{width: '100%'}}></StyledInput>
+            <StyledButton><StyledDiv fontsize='18px'>SUBMIT</StyledDiv></StyledButton>
+          </InputContainer>
+          <RidesContainer>{rides?.map((ride) => <RideCard rideDetails={ride} key={ride.id}/>)}</RidesContainer>
+        </StyledDiv>}
       </StyledDiv>
     </div>
   );

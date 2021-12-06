@@ -16,3 +16,39 @@ export const RidesContainer = styled.div`
     }
 `;
 
+
+export const InputContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 97.5%;
+    padding-bottom: 12px;
+    @media only screen and (max-width: 550px) {
+        display: none;
+    }
+`;
+
+export const StyledButton = styled.button`
+    background: #4c4c4b;
+    color: #fff;
+    border: none;
+    min-width: 180px;
+    height: 50px;
+    font-weight: bold;
+    cursor: pointer;
+`
+
+export const StyledInput = styled.input`
+    padding: 0 0 0 10px;
+    border: none;
+    height: 50px;
+    color: black;
+    font-weight: bold;
+    :focus {
+        outline: none;
+    } 
+    ::placeholder { 
+        color: black;
+        opacity: 1;
+        font-weight: bold;
+    }   
+`
