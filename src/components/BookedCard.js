@@ -14,7 +14,7 @@ const BookedCard = ({accessCode}) => {
         </StyledDiv>
         <StyledDiv display='flex' flexdirection='column' justifycontent='center' alignitems='center'>
             <StyledDiv padding='15px 0 0 0' fontsize='14px'>Return At</StyledDiv>
-            <StyledDiv color="#fff">{moment(selectedRideState.return_time).format('HH:MM')}</StyledDiv>
+            <StyledDiv color="#fff">{moment(selectedRideState.return_time).format('HH:mm')}</StyledDiv>
         </StyledDiv>
         <StyledDiv display='flex' flexdirection='column' justifycontent='center' alignitems='center'>
             <StyledDiv padding='8px 0 0 0' fontsize='14px'>Use Access Code</StyledDiv>

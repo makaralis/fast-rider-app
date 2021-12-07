@@ -13,7 +13,7 @@ const RideCard = ({rideDetails}) => {
         <StyledDiv display='flex' flexdirection='row' justifycontent='space-between' fontsize='14px'>
             <StyledDiv display='flex' flexdirection='row' alignitems='center' justifycontent='center'>
                 <img height='20px' src={'./time.png'} alt='time'/>
-                <StyledDiv paddingstart='5px'>{moment(rideDetails.return_time).format("HH:MM")}</StyledDiv>
+                <StyledDiv paddingstart='5px'>{moment(rideDetails.return_time).format("HH:mm")}</StyledDiv>
             </StyledDiv>
             <StyledDiv display='flex' flexdirection='row' alignitems='center' justifycontent='center'>
                 <img height='20px' src={'./tickets.png'} alt='tickets'/>
