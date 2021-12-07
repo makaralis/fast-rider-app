@@ -29,7 +29,7 @@ const Home = () => {
  
   const fetchRides = useCallback (async () => {
     try {
-      const res = await axios.get(`http://fast-rider.herokuapp.com/api/v1/rides?token=${process.env.REACT_APP_FAST_RIDER_API_KEY}`);
+      const res = await axios.get(`https://fast-rider.herokuapp.com/api/v1/rides?token=${process.env.REACT_APP_FAST_RIDER_API_KEY}`);
 
       if(res && res.data) {
         setRides(res.data);
@@ -79,7 +79,7 @@ const Home = () => {
     try {
       const res = await axios({
         method: "post",
-        url: "http://fast-rider.herokuapp.com/api/v1/tickets",
+        url: "https://fast-rider.herokuapp.com/api/v1/tickets",
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
