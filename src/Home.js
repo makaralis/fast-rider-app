@@ -5,22 +5,23 @@ import axios from "axios";
 import RideCard from "./components/RideCard";
 import BookedCard from "./components/BookedCard";
 import { StyledDiv } from "./styles/globalStyles";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { useRecoilState } from "recoil";
 import { selectedRideAtom } from "./recoil/selected-ride/atoms";
 import { enteredPinAtom } from "./recoil/entered-pin/atoms";
+import { checkIsPinValid } from "./utils";
 import IconContainer from "./components/IconContainer";
 
 
 const Home = () => {
   const [rides, setRides] = useState();
   const [loading, setLoading] = useState(true);
-  const [successfulBooking, setSuccessfulBooking] = useState(true);
+  const [successfulBooking, setSuccessfulBooking] = useState(false);
   const [accessCode, setAccessCode] = useState('');
   const [selectedRideState, setSelectedRideState] = useRecoilState(selectedRideAtom);
   const [enteredPin, setEnteredPin] = useRecoilState(enteredPinAtom);
   const bodyFormData = new FormData();
-
 
   const fetchRides = useCallback (async () => {
     try {
@@ -32,7 +33,9 @@ const Home = () => {
       }
     }
     catch (e) {
-      toast.error("Error while fetching the rides");
+      toast.error("Error while fetching the rides", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       setLoading(false);
     }
   }, []);
@@ -41,6 +44,13 @@ const Home = () => {
     bodyFormData.append('pin',enteredPin);
     bodyFormData.append('ride_id',selectedRideState.id);
     bodyFormData.append('token',process.env.REACT_APP_FAST_RIDER_API_KEY);
+
+    if (!(checkIsPinValid(enteredPin))) {
+      toast.error("Please enter a valid pin", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return;
+    }
 
     try {
       const res = await axios({
@@ -56,7 +66,9 @@ const Home = () => {
       }
     }
     catch (e) {
-      toast.error("Error submitting the ride");
+      toast.error("Only one FastRider ticket can be held at any given time. Please wait until your return time and try again",{
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   }
 
@@ -67,10 +79,11 @@ const Home = () => {
   return (
     <div>
       <AppTitle> The Jungle™ FastRider Service </AppTitle>
-      {successfulBooking ? <StyledDiv display='flex' flexdirection='column' alignitems='center'>
+      {successfulBooking ? 
+      <StyledDiv display='flex' flexdirection='column' alignitems='center'>
           <IconContainer iconPath="./done.png" description='Thank you for using The Jungle™ FastRider ticket system - your access code is now ready!'/>
           <BookedCard accessCode={accessCode}/>
-          </StyledDiv> : 
+      </StyledDiv> : 
       <>
         <div><IconsPanel/></div>
         <StyledDiv display='flex' justifycontent='center'>
@@ -82,6 +95,7 @@ const Home = () => {
             </InputContainer>
             <RidesContainer>{rides?.map((ride) => <RideCard rideDetails={ride} key={ride.id}/>)}</RidesContainer>
           </StyledDiv>}
+          <ToastContainer/>
         </StyledDiv>
       </>}
     </div>
