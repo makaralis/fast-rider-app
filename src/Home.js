@@ -49,6 +49,15 @@ const Home = () => {
       toast.error("Please enter a valid pin", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
+
+      return;
+    }
+
+    if (selectedRideState.remaining_tickets === 0) {
+      toast.error("You can't book a ride with no available tickets for it", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+
       return;
     }
 
