@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRecoilState } from "recoil";
 import { selectedRideAtom } from "./recoil/selected-ride/atoms";
 import { enteredPinAtom } from "./recoil/entered-pin/atoms";
-import { checkIsPinValid } from "./utils";
+import { checkIsPinValid, inTime } from "./utils";
 import IconContainer from "./components/IconContainer";
 
 
@@ -22,7 +22,7 @@ const Home = () => {
   const [selectedRideState, setSelectedRideState] = useRecoilState(selectedRideAtom);
   const [enteredPin, setEnteredPin] = useRecoilState(enteredPinAtom);
   const bodyFormData = new FormData();
-
+ 
   const fetchRides = useCallback (async () => {
     try {
       const res = await axios.get(`http://fast-rider.herokuapp.com/api/v1/rides?token=${process.env.REACT_APP_FAST_RIDER_API_KEY}`);
@@ -45,6 +45,7 @@ const Home = () => {
     bodyFormData.append('ride_id',selectedRideState.id);
     bodyFormData.append('token',process.env.REACT_APP_FAST_RIDER_API_KEY);
 
+    // validation for a currect pin
     if (!(checkIsPinValid(enteredPin))) {
       toast.error("Please enter a valid pin", {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -53,8 +54,18 @@ const Home = () => {
       return;
     }
 
+    // validation for availability of remaining tickets for the selected ride
     if (selectedRideState.remaining_tickets === 0) {
       toast.error("You can't book a ride with no available tickets for it", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+
+      return;
+    }
+
+    // validation for the opening hours
+    if (!(inTime())) {
+      toast.error("You can't book a ride when a park is closed. Please book the tickets between 09:00-19:00", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
 
@@ -71,6 +82,7 @@ const Home = () => {
 
       if (res && res.data) {
         setSuccessfulBooking(true);
+        console.log(res.data);
         setAccessCode(res.data.access_code);
       }
     }
