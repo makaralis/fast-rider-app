@@ -23,7 +23,7 @@ export const InputContainer = styled.div`
     width: 97.5%;
     padding-bottom: 12px;
     @media only screen and (max-width: 550px) {
-        display: none;
+        justify-content: center;
     }
 `;
 
@@ -35,6 +35,9 @@ export const StyledButton = styled.button`
     height: 50px;
     font-weight: bold;
     cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+    @media only screen and (max-width: 550px) {
+        display: none;
+    }
 `
 
 export const StyledInput = styled.input`
@@ -52,4 +55,7 @@ export const StyledInput = styled.input`
         opacity: 1;
         font-weight: bold;
     }   
+    @media only screen and (max-width: 550px) {
+        width: 89%;
+    }
 `

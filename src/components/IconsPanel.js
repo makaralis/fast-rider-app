@@ -9,7 +9,8 @@ const IconsPanel = () => {
 
   return (
     <Container>
-      {items.map((item, index) => <IconContainer index={index} iconPath={item.iconPath} description={item.description} key={item.iconPath}/>)}
+      {items.map((item, index) => <IconContainer index={index} iconPath={item.iconPath} 
+      description={item.description} key={item.iconPath}/>)}
     </Container>
   );
 }
