@@ -13,6 +13,8 @@ export const RidesContainer = styled.div`
     @media only screen and (max-width: 550px) {
         grid-template-columns: 1fr 1fr;
         padding: 0 10px;
+        height: calc(100% - 80px);
+        padding-bottom: 60px;
     }
 `;
 
@@ -58,4 +60,21 @@ export const StyledInput = styled.input`
     @media only screen and (max-width: 550px) {
         width: 89%;
     }
+`
+
+export const StyledMobileButton = styled.button`
+    background: #4c4c4b;
+    color: #fff;
+    border: none;
+    min-width: 180px;
+    height: ${props => props.scrolleddown ? '50px' : '80px'};
+    font-weight: bold;
+    width: ${props => props.scrolleddown ? '89%' : '100%'};
+    transition: width 1s, height 1s;
+    @media only screen and (min-width: 550px) {
+        display: none;
+    }
+    position: fixed;
+    bottom: 0;
+
 `

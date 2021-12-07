@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import IconsPanel from "./components/IconsPanel";
-import { AppTitle, RidesContainer, InputContainer, StyledInput, StyledButton} from "./styles/homePage";
+import { AppTitle, RidesContainer, InputContainer, StyledInput, StyledButton, StyledMobileButton } from "./styles/homePage";
 import axios from "axios";
 import RideCard from "./components/RideCard";
 import BookedCard from "./components/BookedCard";
@@ -15,12 +15,16 @@ import IconContainer from "./components/IconContainer";
 
 
 const Home = () => {
+  const ref = useRef();
   const [rides, setRides] = useState();
   const [loading, setLoading] = useState(true);
   const [successfulBooking, setSuccessfulBooking] = useState(false);
   const [accessCode, setAccessCode] = useState('');
+  const [offset, setOffset] = useState(0);
+  const [scrolledDown, setScrolledDown] = useState(false);
   const [selectedRideState, setSelectedRideState] = useRecoilState(selectedRideAtom);
   const [enteredPin, setEnteredPin] = useRecoilState(enteredPinAtom);
+  const scrollVal = ref?.current?.clientHeight - (window.innerHeight + offset);
   const bodyFormData = new FormData();
  
   const fetchRides = useCallback (async () => {
@@ -97,8 +101,21 @@ const Home = () => {
     fetchRides();
   }, [fetchRides]);
 
+  useEffect(() => {
+    window.onscroll = () => {
+      setOffset(window.pageYOffset);
+
+      if (scrollVal > -100 && scrollVal < 100) {
+        setScrolledDown(true);
+      }
+      else {
+        setScrolledDown(false);
+      }
+    }
+  }, [scrollVal]);
+
   return (
-    <div>
+    <div ref={ref}>
       <AppTitle> The Jungle™ FastRider Service </AppTitle>
       {successfulBooking ? 
       <StyledDiv display='flex' flexdirection='column' alignitems='center'>
@@ -114,7 +131,8 @@ const Home = () => {
               <StyledInput type="text" placeholder="#PIN" value={enteredPin} onChange={(e) => {setEnteredPin(e.target.value)}}/>
               <StyledButton onClick={handleSubmit} disabled={enteredPin === '' || !selectedRideState}><StyledDiv fontsize='18px'>SUBMIT</StyledDiv></StyledButton>
             </InputContainer>
-            <RidesContainer>{rides?.map((ride) => <RideCard rideDetails={ride} key={ride.id}/>)}</RidesContainer>
+              <RidesContainer>{rides?.map((ride) => <RideCard rideDetails={ride} key={ride.id}/>)}</RidesContainer>
+              <StyledMobileButton scrolleddown={scrolledDown} onClick={handleSubmit} disabled={enteredPin === '' || !selectedRideState}><StyledDiv fontsize={scrolledDown ? '18px' : '24px'}>SUBMIT</StyledDiv></StyledMobileButton>
           </StyledDiv>}
           <ToastContainer/>
         </StyledDiv>
