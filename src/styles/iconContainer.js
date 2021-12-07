@@ -11,3 +11,15 @@ export const Container = styled.div`
     text-align: center;
     padding: ${props => props.haspadding ? '0 100px' : ''}
 `;
+
+export const StyledSpan = styled.span`
+    border-radius: 50%;
+    padding: 3px;
+    background: #373737;
+    align-items: center;
+    display: flex;
+`
+
+export const StyledImg = styled.img`
+    filter:  brightness(0) invert(1);
+`
