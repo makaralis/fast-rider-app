@@ -19,7 +19,7 @@ const Home = () => {
   const [rides, setRides] = useState();
   const [loading, setLoading] = useState(true);
   const [successfulBooking, setSuccessfulBooking] = useState(false);
-  const [accessCode, setAccessCode] = useState('');
+  const [bookedRideDetails, setBookedRideDetails] = useState();
   const [offset, setOffset] = useState(0);
   const [scrolledDown, setScrolledDown] = useState(false);
   const [selectedRideState, setSelectedRideState] = useRecoilState(selectedRideAtom);
@@ -85,9 +85,9 @@ const Home = () => {
       })
 
       if (res && res.data) {
+        setBookedRideDetails(res.data);
         setSuccessfulBooking(true);
-        console.log(res.data);
-        setAccessCode(res.data.access_code);
+        setSelectedRideState(null);
       }
     }
     catch (e) {
@@ -120,7 +120,7 @@ const Home = () => {
       {successfulBooking ? 
       <StyledDiv display='flex' flexdirection='column' alignitems='center'>
           <IconContainer iconPath="./done.png" description='Thank you for using The Jungle™ FastRider ticket system - your access code is now ready!'/>
-          <BookedCard accessCode={accessCode}/>
+          <BookedCard rideDetails={bookedRideDetails}/>
       </StyledDiv> : 
       <>
         <div><IconsPanel/></div>
