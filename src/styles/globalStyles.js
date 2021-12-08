@@ -14,4 +14,5 @@ export const StyledDiv = styled.div`
     font-size: ${props => props.fontsize};
     padding-inline-end: ${props => props.paddingend};
     padding-inline-start: ${props => props.paddingstart};
+    height: ${props => props.height};
 `

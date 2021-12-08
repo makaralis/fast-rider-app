@@ -9,7 +9,7 @@ const RideCard = ({rideDetails}) => {
 
     return <StyledCard bordercolor={rideDetails.zone.color} onClick={() => { setSelectedRideState(rideDetails) }} backgroundcolor={rideDetails.id === selectedRideState?.id ? rideDetails.zone.color : '#373737'}>
         <StyledDiv alignself='end'  fontsize='14px'>{rideDetails.zone.name}</StyledDiv>
-        <StyledDiv color='#fff'  padding='15px 0' fontsize='20px'>{rideDetails.name}</StyledDiv>
+        <StyledDiv color='#fff'  padding='15px 0' fontsize='20px' display='flex' alignitems='center' justifycontent='center' height='50px'>{rideDetails.name}</StyledDiv>
         <StyledDiv display='flex' flexdirection='row' justifycontent='space-between' fontsize='14px'>
             <StyledDiv display='flex' flexdirection='row' alignitems='center' justifycontent='center'>
                 <img height='20px' src={'./time.png'} alt='time'/>
