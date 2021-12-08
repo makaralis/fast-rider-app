@@ -17,6 +17,12 @@ validation of PIN:
 validation of opening hours:
 ![image](https://user-images.githubusercontent.com/60109725/145203282-45b786b0-8992-45a7-a1be-e9f67b712f28.png)
 
+successful booking:
+![image](https://user-images.githubusercontent.com/60109725/145203727-c83b72ac-7815-4478-ab52-54364775ae31.png)
+
+
+screen after trying to book an additional ride:
+![image](https://user-images.githubusercontent.com/60109725/145203521-fdad0658-8430-4488-b913-9d1363e1c5b8.png)
 
 
 
