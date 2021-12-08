@@ -14,6 +14,10 @@
 validation of PIN: 
 ![image](https://user-images.githubusercontent.com/60109725/145196817-82ad1671-a520-48ea-871d-68d7759ee92d.png)
 
+validation of opening hours:
+![image](https://user-images.githubusercontent.com/60109725/145203282-45b786b0-8992-45a7-a1be-e9f67b712f28.png)
+
+
 
 
 mobile screens:
