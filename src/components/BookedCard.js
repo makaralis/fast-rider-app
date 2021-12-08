@@ -2,7 +2,7 @@ import { StyledCard } from "../styles/bookedCard";
 import { StyledDiv } from "../styles/globalStyles";
 import moment from "moment";
 
-const BookedCard = ({rideDetails}) => ( <StyledCard bordercolor={rideDetails?.zone?.color}>
+const BookedCard = ({rideDetails}) => ( <StyledCard bordercolor={rideDetails?.ride?.zone?.color}>
         <StyledDiv display='flex' flexdirection='row' justifycontent='space-between' fontsize='14px'>
             <StyledDiv color="#fff">{rideDetails?.ride?.name}</StyledDiv>
             <StyledDiv>{rideDetails?.ride?.zone?.name}</StyledDiv>
